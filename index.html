@@ -272,35 +272,53 @@
 }
 
 
-    function afficherListe() {
-      const ul = document.getElementById("liste-cadeaux");
-      const totalDiv = document.getElementById("total");
-      const buttons = document.getElementById("buttons-container");
-  
-      ul.innerHTML = "";
-      const liste = getListeCadeaux();
+function afficherListe() {
+  const ul = document.getElementById("liste-cadeaux");
+  const totalDiv = document.getElementById("total");
+  const nbArticlesDiv = document.getElementById("nb-articles");
+  const buttons = document.getElementById("buttons-container");
 
-      if (liste.length === 0) {
-        ul.innerHTML = "<li style='text-align:center; color:#666;'>Aucun produit dans votre panier.</li>";
-        totalDiv.textContent = "";
-        buttons.style.display = "none";
-        return;
-      }
+  ul.innerHTML = "";
+  const liste = getListeCadeaux();
 
-      buttons.style.display = "block";
-      let total = 0;
+  // 🔹 Met à jour le nombre d'articles dès le départ
+  const count = liste.length;
+  nbArticlesDiv.textContent = count === 0 ? "" 
+    : "Nombre d'article" + (count > 1 ? "s" : "") + " : " + count;
 
-      liste.forEach((nom, index) => {
-        const li = document.createElement("li");
-        const prix = getPrixProduit(nom);
-        total += prix;
-        li.innerHTML = `
-          <div class="li-left">${nom}</div>
-          <div class="li-right">${prix.toFixed(2)} € 
-            <button class="remove-btn" title="Supprimer" data-index="${index}">❌</button>
-          </div>`;
-        ul.appendChild(li);
-      });
+  if (count === 0) {
+    ul.innerHTML = "<li style='text-align:center; color:#666;'>Aucun produit dans votre panier.</li>";
+    totalDiv.textContent = "";
+    buttons.style.display = "none";
+    return;
+  }
+
+  buttons.style.display = "block";
+  let total = 0;
+
+  liste.forEach((nom, index) => {
+    const li = document.createElement("li");
+    const prix = getPrixProduit(nom);
+    total += prix;
+    li.innerHTML = `
+      <div class="li-left">${nom}</div>
+      <div class="li-right">${prix.toFixed(2)} € 
+        <button class="remove-btn" title="Supprimer" data-index="${index}">❌</button>
+      </div>`;
+    ul.appendChild(li);
+  });
+
+  totalDiv.textContent = "TOTAL : " + total.toFixed(2) + " €";
+
+  // 🔹 Écouteurs de suppression pour chaque bouton
+  document.querySelectorAll(".remove-btn").forEach(btn => {
+    btn.addEventListener("click", e => {
+      const index = e.target.dataset.index;
+      supprimerProduit(index);
+    });
+  });
+}
+
 
       const nbArticlesDiv = document.getElementById("nb-articles");
       const count = liste.length;
