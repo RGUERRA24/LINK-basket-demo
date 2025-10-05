@@ -248,14 +248,15 @@
       localStorage.setItem("listeCadeaux", JSON.stringify(liste));
     }
 
-    function getPrixProduit(nom) {
+   function getPrixProduit(nom) {
   let prixData = JSON.parse(localStorage.getItem("prixProduits")) || {};
   if (!prixData[nom]) {
-    // 🔹 Génère un prix aléatoire entre 10.00 et 150.00 € avec 2 décimales
-    prixData[nom] = (Math.random() * 140 + 10).toFixed(2);
+    // Génère un prix aléatoire entre 10.00 et 150.00 avec 2 décimales
+    const prixAleatoire = (Math.random() * 140 + 10).toFixed(2);
+    prixData[nom] = parseFloat(prixAleatoire); // on stocke un nombre
     localStorage.setItem("prixProduits", JSON.stringify(prixData));
   }
-  return parseFloat(prixData[nom]);
+  return prixData[nom];
 }
 
 
@@ -283,7 +284,7 @@
         total += prix;
         li.innerHTML = `
           <div class="li-left">${nom}</div>
-          <div class="li-right">${prix} € 
+          <div class="li-right">${prix.toFixed(2)} € 
             <button class="remove-btn" title="Supprimer" data-index="${index}">❌</button>
           </div>`;
         ul.appendChild(li);
