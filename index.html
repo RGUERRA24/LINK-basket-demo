@@ -145,6 +145,15 @@
     color: #0076A1;
     margin-top: 30px;
   }
+  
+  .summary {
+  max-width: 900px;           /* même largeur que container */
+  margin: 20px auto 0;        /* centrage horizontal et top spacing */
+  display: flex;
+  justify-content: space-between; /* nb-articles à gauche, total à droite */
+  align-items: center;
+}
+
 
   .modal {
     position: fixed;
@@ -216,8 +225,10 @@
   <div class="container">
     <h2>🎄🎁 MA LISTE</h2>
     <ul id="liste-cadeaux"></ul>
-    <div id="nb-articles" style="text-align:right; margin-top:10px;"></div>
-    <div class="total" id="total"></div>
+    <div class="summary">
+  <div id="nb-articles"></div>
+  <div id="total" class="total"></div>
+</div>
   </div>
 
   <div id="buttons-container" style="margin-top: 15px; text-align: center;">
