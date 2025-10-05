@@ -132,6 +132,20 @@
     <ul id="liste-cadeaux"></ul>
   </div>
 
+<div style="margin-top: 20px; text-align: center;">
+  <!-- Bouton Effacer -->
+  <button id="clearList" 
+          style="padding: 10px 20px; margin: 5px; background-color: #f44336; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🗑️ Effacer la liste
+  </button>
+
+  <!-- Bouton Je commande (href simple) -->
+  <a href="https://www.linkmobility.com" 
+     style="display: inline-block; padding: 10px 20px; margin: 5px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 8px;">
+    🛒 Je commande
+  </a>
+</div>
+
   <!-- Pop-in -->
   <div class="modal" id="modal">
     <div class="modal-content" id="modal-content"></div>
@@ -199,6 +213,15 @@
       panierIcon.appendChild(plusOne);
       setTimeout(() => plusOne.remove(), 1000);
     }
+
+
+ // Bouton "Effacer la liste"
+  document.getElementById("clearList").addEventListener("click", () => {
+    if (confirm("Voulez-vous vraiment effacer la liste ?")) {
+      localStorage.clear(); // Supprime tout le stockage local
+      location.reload();    // Recharge la page
+    }
+  });
 
     // === Au chargement ===
     window.onload = function() {
