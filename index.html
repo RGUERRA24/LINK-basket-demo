@@ -249,13 +249,15 @@
     }
 
     function getPrixProduit(nom) {
-      let prixData = JSON.parse(localStorage.getItem("prixProduits")) || {};
-      if (!prixData[nom]) {
-        prixData[nom] = Math.floor(Math.random() * 141) + 10; // 10-150 €
-        localStorage.setItem("prixProduits", JSON.stringify(prixData));
-      }
-      return prixData[nom];
-    }
+  let prixData = JSON.parse(localStorage.getItem("prixProduits")) || {};
+  if (!prixData[nom]) {
+    // 🔹 Génère un prix aléatoire entre 10.00 et 150.00 € avec 2 décimales
+    prixData[nom] = (Math.random() * 140 + 10).toFixed(2);
+    localStorage.setItem("prixProduits", JSON.stringify(prixData));
+  }
+  return parseFloat(prixData[nom]);
+}
+
 
     function afficherListe() {
       const ul = document.getElementById("liste-cadeaux");
