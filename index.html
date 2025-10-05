@@ -2,25 +2,25 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Ma Liste de Noël</title>
-<style>
+  <title>🛒 Mon Panier LINK</title>
+  <style>
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #F2F6F7;
       margin: 0;
       padding: 0;
       color: #333;
-      font-size: clamp(16px, 2.5vw, 20px); /* texte adaptable */
-      line-height: 1.6;
+      font-size: clamp(18px, 2.8vw, 22px);
+      line-height: 1.8;
     }
 
     header {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 1em 1.5em;
+      padding: 1.2em 1.5em;
       background: white;
-      border-bottom: 2px solid #0076A1;
+      border-bottom: 3px solid #0076A1;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -29,23 +29,15 @@
     }
 
     header svg {
-      height: clamp(24px, 6vw, 40px);
+      height: clamp(28px, 6vw, 45px);
       width: auto;
-    }
-
-    header h1 {
-      font-size: clamp(1.2rem, 4vw, 1.8rem);
-      margin: 0;
-      color: #0076A1;
-      text-align: center;
-      flex: 100%;
     }
 
     .panier-icon {
       position: absolute;
       right: 15px;
       top: 15px;
-      font-size: clamp(1.8rem, 6vw, 2.2rem);
+      font-size: clamp(2rem, 6vw, 2.5rem);
       cursor: pointer;
       color: #0076A1;
     }
@@ -56,23 +48,23 @@
       right: -10px;
       background: #e74c3c;
       color: white;
-      font-size: clamp(0.7rem, 3vw, 0.9rem);
-      padding: 2px 6px;
+      font-size: clamp(0.8rem, 3vw, 1rem);
+      padding: 4px 8px;
       border-radius: 50%;
     }
 
     .container {
       max-width: 800px;
-      margin: 40px auto;
-      padding: 0 15px;
+      margin: 50px auto;
+      padding: 0 20px;
     }
 
     h2 {
-      font-size: clamp(1.4rem, 5vw, 2rem);
-      margin-bottom: 15px;
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      margin-bottom: 20px;
       color: #0076A1;
       text-align: center;
-      letter-spacing: .030rem;
+      letter-spacing: .035rem;
     }
 
     ul {
@@ -82,23 +74,51 @@
 
     ul li {
       background: white;
-      padding: clamp(14px, 4vw, 20px);
-      margin-bottom: 12px;
-      border-radius: 10px;
-      font-size: clamp(1rem, 4vw, 1.3rem);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      padding: clamp(16px, 4vw, 24px);
+      margin-bottom: 14px;
+      border-radius: 12px;
+      font-size: clamp(1.1rem, 4vw, 1.4rem);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    /* Boutons */
+    .li-left {
+      flex: 1;
+    }
+
+    .li-right {
+      text-align: right;
+      color: #0076A1;
+      font-weight: bold;
+    }
+
+    .remove-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.4rem;
+      color: #e74c3c;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .remove-btn:hover {
+      transform: scale(1.2);
+    }
+
     .btn {
       display: inline-block;
-      padding: clamp(12px, 4vw, 18px) clamp(20px, 6vw, 30px);
-      margin: 10px;
-      font-size: clamp(1rem, 4.5vw, 1.3rem);
+      padding: clamp(14px, 4.5vw, 20px) clamp(24px, 6vw, 36px);
+      margin: 12px;
+      font-size: clamp(1.1rem, 4.5vw, 1.4rem);
       font-weight: bold;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
-      border: 2px solid transparent;
+      border: 3px solid transparent;
       text-decoration: none;
       transition: all 0.3s ease;
     }
@@ -110,10 +130,17 @@
     .btn-white {
       background-color: white;
       color: #0076A1;
-      border: 2px solid #0076A1;
+      border: 3px solid #0076A1;
     }
 
-    /* Pop-in */
+    .total {
+      text-align: right;
+      font-size: clamp(1.2rem, 4vw, 1.6rem);
+      font-weight: bold;
+      color: #0076A1;
+      margin-top: 20px;
+    }
+
     .modal {
       position: fixed;
       top: 0; left: 0;
@@ -134,12 +161,12 @@
 
     .modal-content {
       background: white;
-      padding: clamp(20px, 6vw, 30px);
-      border-radius: 10px;
+      padding: clamp(24px, 6vw, 32px);
+      border-radius: 12px;
       text-align: center;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
       animation: pop 0.4s ease;
-      font-size: clamp(1.1rem, 5vw, 1.5rem);
+      font-size: clamp(1.2rem, 5vw, 1.6rem);
       color: #0076A1;
     }
 
@@ -148,12 +175,11 @@
       to { transform: scale(1); opacity: 1; }
     }
 
-    /* Animation +1 */
     .plus-one {
       position: absolute;
       font-weight: bold;
       color: #27ae60;
-      font-size: clamp(1rem, 4vw, 1.4rem);
+      font-size: clamp(1.1rem, 4vw, 1.5rem);
       opacity: 0;
       animation: fly 1s ease forwards;
     }
@@ -164,7 +190,6 @@
       100% { opacity: 0; transform: translateY(-60px) scale(0.8); }
     }
 
-    /* Responsive petit écran */
     @media (max-width: 600px) {
       .btn {
         width: 90%;
@@ -176,39 +201,31 @@
 </head>
 <body>
   <header>
-    <!-- Logo SVG LINK Mobility -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 30.5"><path class="LINK_Mobility_Logo_svg__st0" d="M34.6.4C34 .2 33.4.1 32.7 0c-.8-.1-1.6 0-2.3.1-.8.1-1.6.3-2.4.6-.7.2-1.4.5-2.1.9-.6.3-1.2.7-1.7 1.2-.4.4-.8.8-1 1.4-.2.3-.3.8-.2 1.3.1.5.4.8.8 1.1.5.4 1.1.6 1.8.7.6.1 1.2.2 1.7.2h.9c1-.1 2-.3 2.9-.6.9-.3 1.8-.7 2.6-1.1.7-.4 1.3-.9 1.8-1.5.4-.5.7-1.1.8-1.6.1-.5-.1-1-.4-1.3-.3-.5-.8-.8-1.3-1z"></path><path class="LINK_Mobility_Logo_svg__st0" d="M32.8 11.9c-.7-.5-1.6-.9-2.5-1.1-1-.2-2-.3-3-.3-1.7.1-3.3-.1-4.5-.4-1.2-.3-2.1-.8-2.8-1.4-.6-.6-1-1.3-1.1-2-.1-.7.1-1.5.5-2.3.2-.5.3-.9.3-1.2-.1-.3-.3-.6-.6-.8-.4-.2-.8-.4-1.2-.4-.6-.1-1.1-.1-1.7 0-.7.1-1.3.2-1.9.5-.7.2-1.3.5-1.9.8-.6.3-1.1.7-1.6 1.1-.5.4-.9.8-1.3 1.2-.3.4-.5.8-.6 1.3-.1.3 0 .7.2 1 .2.3.5.5 1 .7.4.1.8.2 1.3.2h.5c1.1-.1 2.2 0 3.2.3s1.7.7 2.3 1.3c.6.7 1 1.5 1.1 2.5.1 1-.1 2.3-.7 3.6-.4.8-.5 1.6-.5 2.5 0 .8.3 1.6.8 2.3.5.8 1.3 1.4 2.1 1.8 1.1.5 2.2.8 3.4.9 1.3.1 2.7-.1 4-.4 1.3-.4 2.5-.9 3.6-1.6 1-.7 1.9-1.5 2.6-2.5.6-.8 1-1.8 1.1-2.9.1-.9-.1-1.8-.5-2.6-.4-.9-.9-1.6-1.6-2.1z"></path><path class="LINK_Mobility_Logo_svg__st0" d="M12.9 12.1c-.5-.4-1.1-.6-1.7-.7-.7-.1-1.5-.1-2.2.1-.9.2-1.7.4-2.5.8s-1.6.8-2.4 1.4c-.7.5-1.4 1.1-2 1.7-.5.6-1 1.2-1.4 1.9-.4.6-.6 1.3-.7 2-.1.6 0 1.2.3 1.7.3.4.7.8 1.2 1 .7.3 1.4.4 2.1.3.7 0 1.3-.1 1.9-.3l.9-.3c1.1-.4 2.1-.9 3-1.6.9-.6 1.7-1.3 2.4-2.1.6-.7 1.1-1.5 1.5-2.3.3-.8.4-1.5.3-2.1.1-.6-.2-1.1-.7-1.5zM46 19.1V1.9h-3.1v17.4c0 2.3 1.3 4.3 4.2 4.3H49v-2.7h-1.4c-1.2 0-1.6-.6-1.6-1.8zM52.6 1.8h3.3v3.3h-3.3zM52.7 8.1h3.1v15.5h-3.1zM67.7 8c-1.6 0-3 .6-4.1 1.7V8.1h-3.1v15.5h3.1v-9.4c0-2.4 1.5-3.4 3.2-3.4s3.1 1 3.1 3.4v9.4H73v-9.9c0-1.7-.4-3.2-1.6-4.4-.8-.8-2.1-1.3-3.7-1.3zM90.7 8.1H87l-6 7.2V1.9h-3.2v21.7H81v-4.5l2.2-2.6 4.4 7.1h3.8l-6-9.4zM116.8 8.1c-2.3 0-4.1 1-5.2 2.8-.9-1.8-2.7-2.8-4.9-2.8-1.8 0-3.4.7-4.6 2V8.3h-1.6v15.3h1.6v-9.5c0-2.9 1.6-4.6 4.3-4.6s4.2 1.6 4.2 4.6v9.5h1.6v-9.8c0-2.6 1.7-4.3 4.3-4.3 2.7 0 4.2 1.6 4.2 4.6v9.5h1.6v-9.8c0-1.8-.6-3.3-1.6-4.3-.9-.9-2.3-1.4-3.9-1.4zM132.6 8.1c-1.7 0-3.2.6-4.3 1.7-1.6 1.6-1.9 4-1.9 6.2s.3 4.6 1.9 6.2c1.1 1.1 2.5 1.7 4.3 1.7 1.7 0 3.2-.6 4.3-1.7 1.6-1.6 1.9-4 1.9-6.2s-.3-4.6-1.9-6.2c-1.1-1.1-2.6-1.7-4.3-1.7zm3.2 13c-1.8 1.7-4.6 1.7-6.4 0-1.3-1.3-1.4-3.3-1.4-5.1s.1-3.9 1.4-5.1c1.8-1.7 4.6-1.7 6.4 0 1.3 1.3 1.4 3.3 1.4 5.1s-.1 3.8-1.4 5.1zM149.2 8.1c-1.7 0-3.2.4-4.6 2.2V.9H143v22.7h1.6v-2c1.3 1.8 2.8 2.2 4.6 2.2 1.6 0 3-.5 3.8-1.3 1.6-1.6 2-4.1 2-6.5s-.4-5-2-6.5c-.8-.9-2.2-1.4-3.8-1.4zm-.2 14.3c-3.8 0-4.3-3.2-4.3-6.4s.6-6.4 4.3-6.4 4.3 3.2 4.3 6.4-.6 6.4-4.3 6.4zM159 .9h2v2h-2zM159.1 8.3h1.6v15.3h-1.6zM167.4 19.6V.9h-1.6v18.7c0 2.4 1.2 4 3.7 4h1.4v-1.4h-1.1c-1.8 0-2.4-.9-2.4-2.6zM173.8.9h2v2h-2zM174 8.3h1.6v15.3H174zM182.7 3.3h-1.6v4.9H179v1.2h2.1v10.1c0 2.3 1.3 4 3.7 4h1.4v-1.4h-1.1c-1.6 0-2.4-1-2.4-2.5V9.5h3.5V8.3h-3.5v-5zM198.2 8.3l-4.6 13.4L189 8.3h-1.8l5.6 15.3-1.2 3.4c-.6 1.5-1.1 2.1-2.8 2.1h-.6v1.4h.8c1 0 2.1-.3 2.9-1 .4-.4.8-1 1-1.8L200 8.2l-1.8.1z"></path></svg>
-
+  <!-- Logo SVG LINK Mobility --> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 30.5"><path class="LINK_Mobility_Logo_svg__st0" d="M34.6.4C34 .2 33.4.1 32.7 0c-.8-.1-1.6 0-2.3.1-.8.1-1.6.3-2.4.6-.7.2-1.4.5-2.1.9-.6.3-1.2.7-1.7 1.2-.4.4-.8.8-1 1.4-.2.3-.3.8-.2 1.3.1.5.4.8.8 1.1.5.4 1.1.6 1.8.7.6.1 1.2.2 1.7.2h.9c1-.1 2-.3 2.9-.6.9-.3 1.8-.7 2.6-1.1.7-.4 1.3-.9 1.8-1.5.4-.5.7-1.1.8-1.6.1-.5-.1-1-.4-1.3-.3-.5-.8-.8-1.3-1z"></path><path class="LINK_Mobility_Logo_svg__st0" d="M32.8 11.9c-.7-.5-1.6-.9-2.5-1.1-1-.2-2-.3-3-.3-1.7.1-3.3-.1-4.5-.4-1.2-.3-2.1-.8-2.8-1.4-.6-.6-1-1.3-1.1-2-.1-.7.1-1.5.5-2.3.2-.5.3-.9.3-1.2-.1-.3-.3-.6-.6-.8-.4-.2-.8-.4-1.2-.4-.6-.1-1.1-.1-1.7 0-.7.1-1.3.2-1.9.5-.7.2-1.3.5-1.9.8-.6.3-1.1.7-1.6 1.1-.5.4-.9.8-1.3 1.2-.3.4-.5.8-.6 1.3-.1.3 0 .7.2 1 .2.3.5.5 1 .7.4.1.8.2 1.3.2h.5c1.1-.1 2.2 0 3.2.3s1.7.7 2.3 1.3c.6.7 1 1.5 1.1 2.5.1 1-.1 2.3-.7 3.6-.4.8-.5 1.6-.5 2.5 0 .8.3 1.6.8 2.3.5.8 1.3 1.4 2.1 1.8 1.1.5 2.2.8 3.4.9 1.3.1 2.7-.1 4-.4 1.3-.4 2.5-.9 3.6-1.6 1-.7 1.9-1.5 2.6-2.5.6-.8 1-1.8 1.1-2.9.1-.9-.1-1.8-.5-2.6-.4-.9-.9-1.6-1.6-2.1z"></path><path class="LINK_Mobility_Logo_svg__st0" d="M12.9 12.1c-.5-.4-1.1-.6-1.7-.7-.7-.1-1.5-.1-2.2.1-.9.2-1.7.4-2.5.8s-1.6.8-2.4 1.4c-.7.5-1.4 1.1-2 1.7-.5.6-1 1.2-1.4 1.9-.4.6-.6 1.3-.7 2-.1.6 0 1.2.3 1.7.3.4.7.8 1.2 1 .7.3 1.4.4 2.1.3.7 0 1.3-.1 1.9-.3l.9-.3c1.1-.4 2.1-.9 3-1.6.9-.6 1.7-1.3 2.4-2.1.6-.7 1.1-1.5 1.5-2.3.3-.8.4-1.5.3-2.1.1-.6-.2-1.1-.7-1.5zM46 19.1V1.9h-3.1v17.4c0 2.3 1.3 4.3 4.2 4.3H49v-2.7h-1.4c-1.2 0-1.6-.6-1.6-1.8zM52.6 1.8h3.3v3.3h-3.3zM52.7 8.1h3.1v15.5h-3.1zM67.7 8c-1.6 0-3 .6-4.1 1.7V8.1h-3.1v15.5h3.1v-9.4c0-2.4 1.5-3.4 3.2-3.4s3.1 1 3.1 3.4v9.4H73v-9.9c0-1.7-.4-3.2-1.6-4.4-.8-.8-2.1-1.3-3.7-1.3zM90.7 8.1H87l-6 7.2V1.9h-3.2v21.7H81v-4.5l2.2-2.6 4.4 7.1h3.8l-6-9.4zM116.8 8.1c-2.3 0-4.1 1-5.2 2.8-.9-1.8-2.7-2.8-4.9-2.8-1.8 0-3.4.7-4.6 2V8.3h-1.6v15.3h1.6v-9.5c0-2.9 1.6-4.6 4.3-4.6s4.2 1.6 4.2 4.6v9.5h1.6v-9.8c0-2.6 1.7-4.3 4.3-4.3 2.7 0 4.2 1.6 4.2 4.6v9.5h1.6v-9.8c0-1.8-.6-3.3-1.6-4.3-.9-.9-2.3-1.4-3.9-1.4zM132.6 8.1c-1.7 0-3.2.6-4.3 1.7-1.6 1.6-1.9 4-1.9 6.2s.3 4.6 1.9 6.2c1.1 1.1 2.5 1.7 4.3 1.7 1.7 0 3.2-.6 4.3-1.7 1.6-1.6 1.9-4 1.9-6.2s-.3-4.6-1.9-6.2c-1.1-1.1-2.6-1.7-4.3-1.7zm3.2 13c-1.8 1.7-4.6 1.7-6.4 0-1.3-1.3-1.4-3.3-1.4-5.1s.1-3.9 1.4-5.1c1.8-1.7 4.6-1.7 6.4 0 1.3 1.3 1.4 3.3 1.4 5.1s-.1 3.8-1.4 5.1zM149.2 8.1c-1.7 0-3.2.4-4.6 2.2V.9H143v22.7h1.6v-2c1.3 1.8 2.8 2.2 4.6 2.2 1.6 0 3-.5 3.8-1.3 1.6-1.6 2-4.1 2-6.5s-.4-5-2-6.5c-.8-.9-2.2-1.4-3.8-1.4zm-.2 14.3c-3.8 0-4.3-3.2-4.3-6.4s.6-6.4 4.3-6.4 4.3 3.2 4.3 6.4-.6 6.4-4.3 6.4zM159 .9h2v2h-2zM159.1 8.3h1.6v15.3h-1.6zM167.4 19.6V.9h-1.6v18.7c0 2.4 1.2 4 3.7 4h1.4v-1.4h-1.1c-1.8 0-2.4-.9-2.4-2.6zM173.8.9h2v2h-2zM174 8.3h1.6v15.3H174zM182.7 3.3h-1.6v4.9H179v1.2h2.1v10.1c0 2.3 1.3 4 3.7 4h1.4v-1.4h-1.1c-1.6 0-2.4-1-2.4-2.5V9.5h3.5V8.3h-3.5v-5zM198.2 8.3l-4.6 13.4L189 8.3h-1.8l5.6 15.3-1.2 3.4c-.6 1.5-1.1 2.1-2.8 2.1h-.6v1.4h.8c1 0 2.1-.3 2.9-1 .4-.4.8-1 1-1.8L200 8.2l-1.8.1z"></path></svg>
     <div class="panier-icon" id="panier-icon">🛒
       <span class="panier-count" id="panier-count">0</span>
     </div>
   </header>
   
-    <div class="container">
+  <div class="container">
     <h2>🎄🎁 Ma wishlist</h2>
     <ul id="liste-cadeaux"></ul>
+    <div class="total" id="total"></div>
   </div>
-  
-    <div style="margin-top: 20px; text-align: center;">
+
+  <div id="buttons-container" style="margin-top: 20px; text-align: center;">
     <a href="https://www.linkmobility.com/fr/testez-gratuitement" class="btn btn-white">🛒 Je commande</a><br>
-	 <button id="clearList" class="btn btn-second">🗑️ Effacer la liste</button>
+    <button id="clearList" class="btn btn-second">❌ Tout supprimer</button>
   </div>
- 
-  <!-- Pop-in -->
+
   <div class="modal" id="modal">
     <div class="modal-content" id="modal-content"></div>
   </div>
 
-  <!-- Ton script JS reste inchangé -->
-</body>
-</html>
-
-
   <script>
-    // Récupérer le produit depuis le fragment #produit=...
     function getProduit() {
       if (window.location.hash) {
-        const hash = window.location.hash.substring(1); // enlève le #
+        const hash = window.location.hash.substring(1);
         const params = new URLSearchParams(hash);
         return params.get("produit");
       }
@@ -217,7 +234,6 @@
 
     const produitNom = getProduit();
 
-    // --- Gestion de la liste ---
     function getListeCadeaux() {
       return JSON.parse(localStorage.getItem("listeCadeaux")) || [];
     }
@@ -226,18 +242,70 @@
       localStorage.setItem("listeCadeaux", JSON.stringify(liste));
     }
 
+    function getPrixProduit(nom) {
+      let prixData = JSON.parse(localStorage.getItem("prixProduits")) || {};
+      if (!prixData[nom]) {
+        prixData[nom] = Math.floor(Math.random() * 141) + 10; // 10-150 €
+        localStorage.setItem("prixProduits", JSON.stringify(prixData));
+      }
+      return prixData[nom];
+    }
+
     function afficherListe() {
       const ul = document.getElementById("liste-cadeaux");
+      const totalDiv = document.getElementById("total");
+      const buttons = document.getElementById("buttons-container");
+
       ul.innerHTML = "";
       const liste = getListeCadeaux();
-      liste.forEach(nom => {
-        let li = document.createElement("li");
-        li.textContent = nom;
+
+      if (liste.length === 0) {
+        ul.innerHTML = "<li style='text-align:center; color:#666;'>Aucun produit dans votre panier.</li>";
+        totalDiv.textContent = "";
+        buttons.style.display = "none";
+        return;
+      }
+
+      buttons.style.display = "block";
+      let total = 0;
+
+      liste.forEach((nom, index) => {
+        const li = document.createElement("li");
+        const prix = getPrixProduit(nom);
+        total += prix;
+        li.innerHTML = `
+          <div class="li-left">${nom}</div>
+          <div class="li-right">${prix} € 
+            <button class="remove-btn" title="Supprimer" data-index="${index}">❌</button>
+          </div>`;
         ul.appendChild(li);
+      });
+
+      totalDiv.textContent = "Total : " + total.toFixed(2) + " €";
+
+      // écouteurs de suppression
+      document.querySelectorAll(".remove-btn").forEach(btn => {
+        btn.addEventListener("click", e => {
+          const index = e.target.dataset.index;
+          supprimerProduit(index);
+        });
       });
     }
 
-    // --- Panier ---
+    function supprimerProduit(index) {
+      let liste = getListeCadeaux();
+      liste.splice(index, 1);
+      setListeCadeaux(liste);
+
+      // Retirer du panier aussi
+      let panier = JSON.parse(localStorage.getItem("panier")) || [];
+      panier.splice(index, 1);
+      localStorage.setItem("panier", JSON.stringify(panier));
+
+      afficherListe();
+      majPanier();
+    }
+
     function ajouterAuPanier(produitNom) {
       let panier = JSON.parse(localStorage.getItem("panier")) || [];
       panier.push({ id: Date.now(), nom: produitNom });
@@ -267,32 +335,24 @@
       setTimeout(() => plusOne.remove(), 1000);
     }
 
+    document.getElementById("clearList").addEventListener("click", () => {
+      localStorage.clear();
+      document.getElementById("liste-cadeaux").innerHTML = "";
+      document.getElementById("total").textContent = "";
+      document.getElementById("buttons-container").style.display = "none";
+      document.getElementById("panier-count").textContent = 0;
+    });
 
- // Bouton "Effacer la liste"
-document.getElementById("clearList").addEventListener("click", () => {
-  // Supprime toutes les données du localStorage
-  localStorage.clear();
-
-  // Vide la liste des produits et le panier
-  document.getElementById("liste-cadeaux").innerHTML = "";
-
-  // Mets à jour le compteur du panier
-  document.getElementById("panier-count").textContent = 0;
-});
-
-    // === Au chargement ===
     window.onload = function() {
       if (produitNom) {
         let liste = getListeCadeaux();
         liste.push(produitNom);
         setListeCadeaux(liste);
-
         ajouterAuPanier(produitNom);
         majPanier();
         afficherModal(produitNom);
         animationPlusUn();
       }
-
       afficherListe();
       majPanier();
     };
