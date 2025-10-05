@@ -217,10 +217,12 @@
 
  // Bouton "Effacer la liste"
   document.getElementById("clearList").addEventListener("click", () => {
-    if (confirm("Voulez-vous vraiment effacer la liste ?")) {
-      localStorage.clear(); // Supprime tout le stockage local
-      location.reload();    // Recharge la page
-    }
+    // Supprime toutes les données du localStorage
+    localStorage.clear();
+
+    // Vide la liste des produits et le panier
+    document.getElementById("list").innerHTML = "";
+    document.getElementById("cart").innerHTML = "";
   });
 
     // === Au chargement ===
