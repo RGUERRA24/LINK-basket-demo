@@ -240,37 +240,35 @@
     <div class="modal-content" id="modal-content"></div>
   </div>
 
-  <script>
-    function getProduit() {
-      if (window.location.hash) {
-        const hash = window.location.hash.substring(1);
-        const params = new URLSearchParams(hash);
-        return params.get("produit");
-      }
-      return null;
-    }
+<script>
+function getProduit() {
+  if (window.location.hash) {
+    const hash = window.location.hash.substring(1);
+    const params = new URLSearchParams(hash);
+    return params.get("produit");
+  }
+  return null;
+}
 
-    const produitNom = getProduit();
+const produitNom = getProduit();
 
-    function getListeCadeaux() {
-      return JSON.parse(localStorage.getItem("listeCadeaux")) || [];
-    }
+function getListeCadeaux() {
+  return JSON.parse(localStorage.getItem("listeCadeaux")) || [];
+}
 
-    function setListeCadeaux(liste) {
-      localStorage.setItem("listeCadeaux", JSON.stringify(liste));
-    }
+function setListeCadeaux(liste) {
+  localStorage.setItem("listeCadeaux", JSON.stringify(liste));
+}
 
-   function getPrixProduit(nom) {
+function getPrixProduit(nom) {
   let prixData = JSON.parse(localStorage.getItem("prixProduits")) || {};
   if (!prixData[nom]) {
-    // Génère un prix aléatoire entre 10.00 et 150.00 avec 2 décimales
     const prixAleatoire = (Math.random() * 140 + 10).toFixed(2);
-    prixData[nom] = parseFloat(prixAleatoire); // on stocke un nombre
+    prixData[nom] = parseFloat(prixAleatoire); // stocke un nombre
     localStorage.setItem("prixProduits", JSON.stringify(prixData));
   }
   return prixData[nom];
 }
-
 
 function afficherListe() {
   const ul = document.getElementById("liste-cadeaux");
@@ -280,9 +278,9 @@ function afficherListe() {
 
   ul.innerHTML = "";
   const liste = getListeCadeaux();
-
-  // 🔹 Met à jour le nombre d'articles dès le départ
   const count = liste.length;
+
+  // Mise à jour du nombre d'articles
   nbArticlesDiv.textContent = count === 0 ? "" 
     : "Nombre d'article" + (count > 1 ? "s" : "") + " : " + count;
 
@@ -294,8 +292,8 @@ function afficherListe() {
   }
 
   buttons.style.display = "block";
-  let total = 0;
 
+  let total = 0;
   liste.forEach((nom, index) => {
     const li = document.createElement("li");
     const prix = getPrixProduit(nom);
@@ -310,7 +308,7 @@ function afficherListe() {
 
   totalDiv.textContent = "TOTAL : " + total.toFixed(2) + " €";
 
-  // 🔹 Écouteurs de suppression pour chaque bouton
+  // Écouteurs de suppression
   document.querySelectorAll(".remove-btn").forEach(btn => {
     btn.addEventListener("click", e => {
       const index = e.target.dataset.index;
@@ -319,87 +317,74 @@ function afficherListe() {
   });
 }
 
+function supprimerProduit(index) {
+  let liste = getListeCadeaux();
+  liste.splice(index, 1);
+  setListeCadeaux(liste);
 
-      const nbArticlesDiv = document.getElementById("nb-articles");
-      const count = liste.length;
-      nbArticlesDiv.textContent = "Nombre d'article" + (count > 1 ? "s" : "") + " : " + count;
-      totalDiv.textContent = "TOTAL : " + total.toFixed(2) + " €";
+  // Retirer du panier aussi
+  let panier = JSON.parse(localStorage.getItem("panier")) || [];
+  panier.splice(index, 1);
+  localStorage.setItem("panier", JSON.stringify(panier));
 
-      // écouteurs de suppression
-      document.querySelectorAll(".remove-btn").forEach(btn => {
-        btn.addEventListener("click", e => {
-          const index = e.target.dataset.index;
-          supprimerProduit(index);
-        });
-      });
-    }
+  afficherListe();
+  majPanier();
+}
 
-    function supprimerProduit(index) {
-      let liste = getListeCadeaux();
-      liste.splice(index, 1);
-      setListeCadeaux(liste);
+function ajouterAuPanier(produitNom) {
+  let panier = JSON.parse(localStorage.getItem("panier")) || [];
+  panier.push({ id: Date.now(), nom: produitNom });
+  localStorage.setItem("panier", JSON.stringify(panier));
+  return panier;
+}
 
-      // Retirer du panier aussi
-      let panier = JSON.parse(localStorage.getItem("panier")) || [];
-      panier.splice(index, 1);
-      localStorage.setItem("panier", JSON.stringify(panier));
+function majPanier() {
+  let panier = JSON.parse(localStorage.getItem("panier")) || [];
+  document.getElementById("panier-count").textContent = panier.length;
+}
 
-      afficherListe();
-      majPanier();
-    }
+function afficherModal(produitNom) {
+  const modal = document.getElementById("modal");
+  const modalContent = document.getElementById("modal-content");
+  modalContent.textContent = `🎁 ${produitNom} ajouté au panier !`;
+  modal.classList.add("active");
+  setTimeout(() => modal.classList.remove("active"), 1500);
+}
 
-    function ajouterAuPanier(produitNom) {
-      let panier = JSON.parse(localStorage.getItem("panier")) || [];
-      panier.push({ id: Date.now(), nom: produitNom });
-      localStorage.setItem("panier", JSON.stringify(panier));
-      return panier;
-    }
+function animationPlusUn() {
+  const panierIcon = document.getElementById("panier-icon");
+  const plusOne = document.createElement("div");
+  plusOne.classList.add("plus-one");
+  plusOne.textContent = "+1";
+  panierIcon.appendChild(plusOne);
+  setTimeout(() => plusOne.remove(), 1000);
+}
 
-    function majPanier() {
-      let panier = JSON.parse(localStorage.getItem("panier")) || [];
-      document.getElementById("panier-count").textContent = panier.length;
-    }
-
-    function afficherModal(produitNom) {
-      const modal = document.getElementById("modal");
-      const modalContent = document.getElementById("modal-content");
-      modalContent.textContent = `🎁 ${produitNom} ajouté au panier !`;
-      modal.classList.add("active");
-      setTimeout(() => modal.classList.remove("active"), 1500);
-    }
-
-    function animationPlusUn() {
-      const panierIcon = document.getElementById("panier-icon");
-      const plusOne = document.createElement("div");
-      plusOne.classList.add("plus-one");
-      plusOne.textContent = "+1";
-      panierIcon.appendChild(plusOne);
-      setTimeout(() => plusOne.remove(), 1000);
-    }
-
-  document.getElementById("clearList").addEventListener("click", () => {
+// Effacer le panier
+document.getElementById("clearList").addEventListener("click", () => {
   localStorage.removeItem("listeCadeaux");
   localStorage.removeItem("panier");
-  document.getElementById("nb-articles").textContent = ""; // 🔹 vide le nombre d'articles
   localStorage.removeItem("prixProduits");
-  
+  document.getElementById("nb-articles").textContent = "";
   afficherListe();
   majPanier();
 });
 
-    window.onload = function() {
-      if (produitNom) {
-        let liste = getListeCadeaux();
-        liste.push(produitNom);
-        setListeCadeaux(liste);
-        ajouterAuPanier(produitNom);
-        majPanier();
-        afficherModal(produitNom);
-        animationPlusUn();
-      }
-      afficherListe();
-      majPanier();
-    };
-  </script>
+// Au chargement de la page
+window.onload = function() {
+  if (produitNom) {
+    let liste = getListeCadeaux();
+    liste.push(produitNom);
+    setListeCadeaux(liste);
+    ajouterAuPanier(produitNom);
+    majPanier();
+    afficherModal(produitNom);
+    animationPlusUn();
+  }
+  afficherListe();
+  majPanier();
+};
+</script>
+
 </body>
 </html>
