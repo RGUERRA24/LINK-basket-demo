@@ -362,6 +362,7 @@
   document.getElementById("clearList").addEventListener("click", () => {
   localStorage.removeItem("listeCadeaux");
   localStorage.removeItem("panier");
+  document.getElementById("nb-articles").textContent = ""; // 🔹 vide le nombre d'articles
   localStorage.removeItem("prixProduits");
   
   afficherListe();
