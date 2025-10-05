@@ -216,14 +216,16 @@
 
 
  // Bouton "Effacer la liste"
-  document.getElementById("clearList").addEventListener("click", () => {
-    // Supprime toutes les données du localStorage
-    localStorage.clear();
+document.getElementById("clearList").addEventListener("click", () => {
+  // Supprime toutes les données du localStorage
+  localStorage.clear();
 
-    // Vide la liste des produits et le panier
-    document.getElementById("list").innerHTML = "";
-    document.getElementById("cart").innerHTML = "";
-  });
+  // Vide la liste des produits et le panier
+  document.getElementById("liste-cadeaux").innerHTML = "";
+
+  // Mets à jour le compteur du panier
+  document.getElementById("panier-count").textContent = 0;
+});
 
     // === Au chargement ===
     window.onload = function() {
