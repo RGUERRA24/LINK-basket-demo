@@ -3,201 +3,202 @@
 <head>
   <meta charset="UTF-8">
   <title>🛒 Mon Panier LINK</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #F2F6F7;
-      margin: 0;
-      padding: 0;
-      color: #333;
-      font-size: clamp(18px, 2.8vw, 22px);
-      line-height: 1.8;
-    }
+ <style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #F2F6F7;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-size: clamp(22px, 4.5vw, 28px); /* 🔹 texte général plus gros */
+    line-height: 1.9;
+  }
 
-    header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1.2em 1.5em;
-      background: white;
-      border-bottom: 3px solid #0076A1;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.6em 1.5em;
+    background: white;
+    border-bottom: 4px solid #0076A1;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
 
-    header svg {
-      height: clamp(28px, 6vw, 45px);
-      width: auto;
-    }
+  header svg {
+    height: clamp(38px, 8vw, 55px);
+    width: auto;
+  }
 
-    .panier-icon {
-      position: absolute;
-      right: 15px;
-      top: 15px;
-      font-size: clamp(2rem, 6vw, 2.5rem);
-      cursor: pointer;
-      color: #0076A1;
-    }
+  .panier-icon {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    font-size: clamp(2.5rem, 8vw, 3rem);
+    cursor: pointer;
+    color: #0076A1;
+  }
 
-    .panier-count {
-      position: absolute;
-      top: -8px;
-      right: -10px;
-      background: #e74c3c;
-      color: white;
-      font-size: clamp(0.8rem, 3vw, 1rem);
-      padding: 4px 8px;
-      border-radius: 50%;
-    }
+  .panier-count {
+    position: absolute;
+    top: -10px;
+    right: -12px;
+    background: #e74c3c;
+    color: white;
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
+    padding: 6px 10px;
+    border-radius: 50%;
+  }
 
-    .container {
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 0 20px;
-    }
+  .container {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 25px;
+  }
 
-    h2 {
-      font-size: clamp(1.6rem, 5vw, 2.2rem);
-      margin-bottom: 20px;
-      color: #0076A1;
-      text-align: center;
-      letter-spacing: .035rem;
-    }
+  h2 {
+    font-size: clamp(2rem, 6.5vw, 3rem); /* 🔹 titre plus grand */
+    margin-bottom: 30px;
+    color: #0076A1;
+    text-align: center;
+    letter-spacing: .05rem;
+  }
 
-    ul {
-      list-style: none;
-      padding: 0;
-    }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
 
-    ul li {
-      background: white;
-      padding: clamp(16px, 4vw, 24px);
-      margin-bottom: 14px;
-      border-radius: 12px;
-      font-size: clamp(1.1rem, 4vw, 1.4rem);
-      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+  ul li {
+    background: white;
+    padding: clamp(22px, 5vw, 30px);
+    margin-bottom: 18px;
+    border-radius: 16px;
+    font-size: clamp(1.4rem, 5.5vw, 2rem); /* 🔹 produits plus gros */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
 
-    .li-left {
-      flex: 1;
-    }
+  .li-left {
+    flex: 1;
+  }
 
-    .li-right {
-      text-align: right;
-      color: #0076A1;
-      font-weight: bold;
-    }
+  .li-right {
+    text-align: right;
+    color: #0076A1;
+    font-weight: bold;
+  }
 
-    .remove-btn {
-      background: transparent;
-      border: none;
-      font-size: 1.4rem;
-      color: #e74c3c;
-      cursor: pointer;
-      margin-left: 10px;
-      transition: transform 0.2s ease;
-    }
+  .remove-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    color: #e74c3c;
+    cursor: pointer;
+    margin-left: 12px;
+    transition: transform 0.2s ease;
+  }
 
-    .remove-btn:hover {
-      transform: scale(1.2);
-    }
+  .remove-btn:hover {
+    transform: scale(1.25);
+  }
 
+  .btn {
+    display: inline-block;
+    padding: clamp(20px, 5vw, 28px) clamp(30px, 8vw, 45px);
+    margin: 14px;
+    font-size: clamp(1.5rem, 5.5vw, 2rem); /* 🔹 boutons plus gros */
+    font-weight: bold;
+    border-radius: 14px;
+    cursor: pointer;
+    border: 4px solid transparent;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-second {
+    color: #0076A1;
+  }
+
+  .btn-white {
+    background-color: white;
+    color: #0076A1;
+    border: 4px solid #0076A1;
+  }
+
+  .total {
+    text-align: right;
+    font-size: clamp(1.6rem, 5.5vw, 2.2rem); /* 🔹 total plus lisible */
+    font-weight: bold;
+    color: #0076A1;
+    margin-top: 30px;
+  }
+
+  .modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s;
+  }
+
+  .modal.active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .modal-content {
+    background: white;
+    padding: clamp(28px, 7vw, 40px);
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.25);
+    animation: pop 0.4s ease;
+    font-size: clamp(1.6rem, 5.5vw, 2rem);
+    color: #0076A1;
+  }
+
+  @keyframes pop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .plus-one {
+    position: absolute;
+    font-weight: bold;
+    color: #27ae60;
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    opacity: 0;
+    animation: fly 1s ease forwards;
+  }
+
+  @keyframes fly {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    80% { opacity: 1; transform: translateY(-40px) scale(1.2); }
+    100% { opacity: 0; transform: translateY(-60px) scale(0.8); }
+  }
+
+  @media (max-width: 600px) {
     .btn {
-      display: inline-block;
-      padding: clamp(14px, 4.5vw, 20px) clamp(24px, 6vw, 36px);
-      margin: 12px;
-      font-size: clamp(1.1rem, 4.5vw, 1.4rem);
-      font-weight: bold;
-      border-radius: 12px;
-      cursor: pointer;
-      border: 3px solid transparent;
-      text-decoration: none;
-      transition: all 0.3s ease;
+      width: 92%;
+      margin: 12px auto;
+      display: block;
     }
+  }
+</style>
 
-    .btn-second {
-      color: #0076A1;
-    }
-
-    .btn-white {
-      background-color: white;
-      color: #0076A1;
-      border: 3px solid #0076A1;
-    }
-
-    .total {
-      text-align: right;
-      font-size: clamp(1.2rem, 4vw, 1.6rem);
-      font-weight: bold;
-      color: #0076A1;
-      margin-top: 20px;
-    }
-
-    .modal {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.3s ease, visibility 0.3s;
-    }
-
-    .modal.active {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    .modal-content {
-      background: white;
-      padding: clamp(24px, 6vw, 32px);
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-      animation: pop 0.4s ease;
-      font-size: clamp(1.2rem, 5vw, 1.6rem);
-      color: #0076A1;
-    }
-
-    @keyframes pop {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .plus-one {
-      position: absolute;
-      font-weight: bold;
-      color: #27ae60;
-      font-size: clamp(1.1rem, 4vw, 1.5rem);
-      opacity: 0;
-      animation: fly 1s ease forwards;
-    }
-
-    @keyframes fly {
-      0% { opacity: 1; transform: translateY(0) scale(1); }
-      80% { opacity: 1; transform: translateY(-40px) scale(1.2); }
-      100% { opacity: 0; transform: translateY(-60px) scale(0.8); }
-    }
-
-    @media (max-width: 600px) {
-      .btn {
-        width: 90%;
-        margin: 10px auto;
-        display: block;
-      }
-    }
-  </style>
 </head>
 <body>
   <header>
