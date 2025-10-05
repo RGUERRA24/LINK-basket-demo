@@ -216,6 +216,7 @@
   <div class="container">
     <h2>🎄🎁 MA LISTE</h2>
     <ul id="liste-cadeaux"></ul>
+    <div id="nb-articles" style="text-align:right; margin-top:10px;"></div>
     <div class="total" id="total"></div>
   </div>
 
@@ -264,7 +265,7 @@
       const ul = document.getElementById("liste-cadeaux");
       const totalDiv = document.getElementById("total");
       const buttons = document.getElementById("buttons-container");
-
+  
       ul.innerHTML = "";
       const liste = getListeCadeaux();
 
@@ -290,6 +291,9 @@
         ul.appendChild(li);
       });
 
+      const nbArticlesDiv = document.getElementById("nb-articles");
+      const count = liste.length;
+      nbArticlesDiv.textContent = "Nombre d'article" + (count > 1 ? "s" : "") + " : " + count;
       totalDiv.textContent = "TOTAL : " + total.toFixed(2) + " €";
 
       // écouteurs de suppression
