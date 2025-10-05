@@ -6,7 +6,7 @@
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #fafafa;
+      background: #F2F6F7;
       margin: 0;
       padding: 0;
       color: #333;
@@ -14,24 +14,38 @@
 
     header {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 1em 2em;
+      padding: 1em 1.5em;
       background: white;
-      border-bottom: 1px solid #eee;
+      border-bottom: 2px solid #0076A1;
       position: sticky;
       top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    header svg {
+      height: 30px;
+      width: auto;
     }
 
     header h1 {
-      font-size: 1.2em;
+      font-size: 1.3em;
       margin: 0;
+      color: #0076A1;
+      text-align: center;
+      flex: 100%;
     }
 
     .panier-icon {
-      position: relative;
-      font-size: 1.5em;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      font-size: 1.8em;
       cursor: pointer;
+      color: #0076A1;
     }
 
     .panier-count {
@@ -48,12 +62,14 @@
     .container {
       max-width: 800px;
       margin: 40px auto;
-      padding: 20px;
     }
 
     h2 {
-      font-size: 1.4em;
-      margin-bottom: 10px;
+      font-size: 1.6em;
+      margin-bottom: 15px;
+      color: #0076A1;
+      text-align: center;
+	  letter-spacing: .030rem;
     }
 
     ul {
@@ -63,11 +79,37 @@
 
     ul li {
       background: white;
-      padding: 12px 15px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 15px 18px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      font-size: 1.1em;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
+
+    /* Boutons */
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      margin: 8px;
+      font-size: 1em;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-second {
+      color: #0076A1;
+    }
+
+    .btn-white {
+      background-color: white;
+      color: #0076A1;
+      border: 2px solid #0076A1;
+    }
+
 
     /* Pop-in */
     .modal {
@@ -95,6 +137,8 @@
       text-align: center;
       box-shadow: 0 6px 20px rgba(0,0,0,0.2);
       animation: pop 0.4s ease;
+      font-size: 1.2em;
+      color: #0076A1;
     }
 
     @keyframes pop {
@@ -117,39 +161,60 @@
       80% { opacity: 1; transform: translateY(-40px) scale(1.2); }
       100% { opacity: 0; transform: translateY(-60px) scale(0.8); }
     }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        font-size: 1.1em;
+      }
+
+      header h1 {
+        font-size: 1.1em;
+      }
+
+      ul li {
+        font-size: 1.2em;
+        padding: 18px;
+      }
+
+      .btn {
+        font-size: 1.1em;
+        width: 90%;
+        margin: 10px auto;
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>🎄 Ma Liste de Noël</h1>
+    <!-- Logo SVG LINK Mobility -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 30.5"><path class="LINK_Mobility_Logo_svg__st0" d="M34.6.4C34 .2 33.4.1 32.7 0c-.8-.1-1.6 0-2.3.1-.8.1-1.6.3-2.4.6-.7.2-1.4.5-2.1.9-.6.3-1.2.7-1.7 1.2-.4.4-.8.8-1 1.4-.2.3-.3.8-.2 1.3.1.5.4.8.8 1.1.5.4 1.1.6 1.8.7.6.1 1.2.2 1.7.2h.9c1-.1 2-.3 2.9-.6.9-.3 1.8-.7 2.6-1.1.7-.4 1.3-.9 1.8-1.5.4-.5.7-1.1.8-1.6.1-.5-.1-1-.4-1.3-.3-.5-.8-.8-1.3-1z"></path><path class="LINK_Mobility_Logo_svg__st0" d="M32.8 11.9c-.7-.5-1.6-.9-2.5-1.1-1-.2-2-.3-3-.3-1.7.1-3.3-.1-4.5-.4-1.2-.3-2.1-.8-2.8-1.4-.6-.6-1-1.3-1.1-2-.1-.7.1-1.5.5-2.3.2-.5.3-.9.3-1.2-.1-.3-.3-.6-.6-.8-.4-.2-.8-.4-1.2-.4-.6-.1-1.1-.1-1.7 0-.7.1-1.3.2-1.9.5-.7.2-1.3.5-1.9.8-.6.3-1.1.7-1.6 1.1-.5.4-.9.8-1.3 1.2-.3.4-.5.8-.6 1.3-.1.3 0 .7.2 1 .2.3.5.5 1 .7.4.1.8.2 1.3.2h.5c1.1-.1 2.2 0 3.2.3s1.7.7 2.3 1.3c.6.7 1 1.5 1.1 2.5.1 1-.1 2.3-.7 3.6-.4.8-.5 1.6-.5 2.5 0 .8.3 1.6.8 2.3.5.8 1.3 1.4 2.1 1.8 1.1.5 2.2.8 3.4.9 1.3.1 2.7-.1 4-.4 1.3-.4 2.5-.9 3.6-1.6 1-.7 1.9-1.5 2.6-2.5.6-.8 1-1.8 1.1-2.9.1-.9-.1-1.8-.5-2.6-.4-.9-.9-1.6-1.6-2.1z"></path><path class="LINK_Mobility_Logo_svg__st0" d="M12.9 12.1c-.5-.4-1.1-.6-1.7-.7-.7-.1-1.5-.1-2.2.1-.9.2-1.7.4-2.5.8s-1.6.8-2.4 1.4c-.7.5-1.4 1.1-2 1.7-.5.6-1 1.2-1.4 1.9-.4.6-.6 1.3-.7 2-.1.6 0 1.2.3 1.7.3.4.7.8 1.2 1 .7.3 1.4.4 2.1.3.7 0 1.3-.1 1.9-.3l.9-.3c1.1-.4 2.1-.9 3-1.6.9-.6 1.7-1.3 2.4-2.1.6-.7 1.1-1.5 1.5-2.3.3-.8.4-1.5.3-2.1.1-.6-.2-1.1-.7-1.5zM46 19.1V1.9h-3.1v17.4c0 2.3 1.3 4.3 4.2 4.3H49v-2.7h-1.4c-1.2 0-1.6-.6-1.6-1.8zM52.6 1.8h3.3v3.3h-3.3zM52.7 8.1h3.1v15.5h-3.1zM67.7 8c-1.6 0-3 .6-4.1 1.7V8.1h-3.1v15.5h3.1v-9.4c0-2.4 1.5-3.4 3.2-3.4s3.1 1 3.1 3.4v9.4H73v-9.9c0-1.7-.4-3.2-1.6-4.4-.8-.8-2.1-1.3-3.7-1.3zM90.7 8.1H87l-6 7.2V1.9h-3.2v21.7H81v-4.5l2.2-2.6 4.4 7.1h3.8l-6-9.4zM116.8 8.1c-2.3 0-4.1 1-5.2 2.8-.9-1.8-2.7-2.8-4.9-2.8-1.8 0-3.4.7-4.6 2V8.3h-1.6v15.3h1.6v-9.5c0-2.9 1.6-4.6 4.3-4.6s4.2 1.6 4.2 4.6v9.5h1.6v-9.8c0-2.6 1.7-4.3 4.3-4.3 2.7 0 4.2 1.6 4.2 4.6v9.5h1.6v-9.8c0-1.8-.6-3.3-1.6-4.3-.9-.9-2.3-1.4-3.9-1.4zM132.6 8.1c-1.7 0-3.2.6-4.3 1.7-1.6 1.6-1.9 4-1.9 6.2s.3 4.6 1.9 6.2c1.1 1.1 2.5 1.7 4.3 1.7 1.7 0 3.2-.6 4.3-1.7 1.6-1.6 1.9-4 1.9-6.2s-.3-4.6-1.9-6.2c-1.1-1.1-2.6-1.7-4.3-1.7zm3.2 13c-1.8 1.7-4.6 1.7-6.4 0-1.3-1.3-1.4-3.3-1.4-5.1s.1-3.9 1.4-5.1c1.8-1.7 4.6-1.7 6.4 0 1.3 1.3 1.4 3.3 1.4 5.1s-.1 3.8-1.4 5.1zM149.2 8.1c-1.7 0-3.2.4-4.6 2.2V.9H143v22.7h1.6v-2c1.3 1.8 2.8 2.2 4.6 2.2 1.6 0 3-.5 3.8-1.3 1.6-1.6 2-4.1 2-6.5s-.4-5-2-6.5c-.8-.9-2.2-1.4-3.8-1.4zm-.2 14.3c-3.8 0-4.3-3.2-4.3-6.4s.6-6.4 4.3-6.4 4.3 3.2 4.3 6.4-.6 6.4-4.3 6.4zM159 .9h2v2h-2zM159.1 8.3h1.6v15.3h-1.6zM167.4 19.6V.9h-1.6v18.7c0 2.4 1.2 4 3.7 4h1.4v-1.4h-1.1c-1.8 0-2.4-.9-2.4-2.6zM173.8.9h2v2h-2zM174 8.3h1.6v15.3H174zM182.7 3.3h-1.6v4.9H179v1.2h2.1v10.1c0 2.3 1.3 4 3.7 4h1.4v-1.4h-1.1c-1.6 0-2.4-1-2.4-2.5V9.5h3.5V8.3h-3.5v-5zM198.2 8.3l-4.6 13.4L189 8.3h-1.8l5.6 15.3-1.2 3.4c-.6 1.5-1.1 2.1-2.8 2.1h-.6v1.4h.8c1 0 2.1-.3 2.9-1 .4-.4.8-1 1-1.8L200 8.2l-1.8.1z"></path></svg>
+
     <div class="panier-icon" id="panier-icon">🛒
       <span class="panier-count" id="panier-count">0</span>
     </div>
   </header>
-
-  <div class="container">
-    <h2>🎄🎁 Ma liste de cadeaux :</h2>
+  
+    <div class="container">
+    <h2>🎄🎁 Ma wishlist</h2>
     <ul id="liste-cadeaux"></ul>
   </div>
-
-<div style="margin-top: 20px; text-align: center;">
-  <!-- Bouton Effacer -->
-  <button id="clearList" 
-          style="padding: 10px 20px; margin: 5px; background-color: #f44336; color: white; border: none; border-radius: 8px; cursor: pointer;">
-    🗑️ Effacer la liste
-  </button>
-
-  <!-- Bouton Je commande (href simple) -->
-  <a href="https://www.linkmobility.com" 
-     style="display: inline-block; padding: 10px 20px; margin: 5px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 8px;">
-    🛒 Je commande
-  </a>
-</div>
-
+  
+    <div style="margin-top: 20px; text-align: center;">
+    <a href="https://www.linkmobility.com/fr/testez-gratuitement" class="btn btn-white">🛒 Je commande</a><br>
+	 <button id="clearList" class="btn btn-second">🗑️ Effacer la liste</button>
+  </div>
+ 
   <!-- Pop-in -->
   <div class="modal" id="modal">
     <div class="modal-content" id="modal-content"></div>
   </div>
+
+  <!-- Ton script JS reste inchangé -->
+</body>
+</html>
+
 
   <script>
     // Récupérer le produit depuis le fragment #produit=...
