@@ -241,11 +241,23 @@
   </div>
 
 <script>
+
+/* Table de correspondance */
+  
+const produitsMap = {
+  "collier-etoile-dor": "Collier Étoile d’or",
+  "boucles-lumiere": "Boucles d’oreille Lumière",
+  "bagues-elegance": "Bagues Élégance"
+};
+
 function getProduit() {
   if (window.location.hash) {
     const hash = window.location.hash.substring(1);
     const params = new URLSearchParams(hash);
-    return params.get("produit");
+    const slug = params.get("produit");
+    if (slug && produitsMap[slug]) {
+      return produitsMap[slug]; // renvoie le vrai nom du produit
+    }
   }
   return null;
 }
